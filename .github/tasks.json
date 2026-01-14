@@ -1,0 +1,41 @@
+{
+  "tasks": [
+    {
+      "id": "task_01",
+      "name": "Задание 1: Система уведомлений",
+      "file": "task_01.py",
+      "max_score": 50,
+      "tests": [
+        {
+          "name": "Уведомление 'Привет!'",
+          "input": "Привет!",
+          "expected_output": "[Email] Отправка: Привет!\n[SMS] Отправка: Привет!\n[Push] Отправка: Привет!",
+          "comparison_method": "exact",
+          "max_score": 50
+        }
+      ]
+    },
+    {
+      "id": "task_02",
+      "name": "Задание 2: Животные и наследование",
+      "file": "task_02.py",
+      "max_score": 50,
+      "tests": [
+        {
+          "name": "Размеры 7 и 3",
+          "input": "7\n3",
+          "expected_output": "Гав! Я животное! Мой размер: 7\nМяу! Я животное! Мой размер: 3",
+          "comparison_method": "exact",
+          "max_score": 25
+        },
+        {
+          "name": "Размеры 8 и 4",
+          "input": "8\n4",
+          "expected_output": "Гав! Я животное! Мой размер: 8\nМяу! Я животное! Мой размер: 4",
+          "comparison_method": "exact",
+          "max_score": 25
+        }
+      ]
+    }
+  ]
+}
