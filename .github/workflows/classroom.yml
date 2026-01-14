@@ -1,0 +1,45 @@
+name: Autograding
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # === Проверка структуры: task_01.py ===
+      - name: Check structure — Task 1
+        run: python tests/check_structure.py task_01.py --task 1
+
+      # === Проверка структуры: task_02.py ===
+      - name: Check structure — Task 2
+        run: python tests/check_structure.py task_02.py --task 2
+
+      # === Тест 1: Notifier ===
+      - name: Run Test — Task 1
+        id: test1
+        uses: classroom-resources/autograding-io-grader@v1
+        with:
+          executable: "python tests/test_task_01.py"
+          timeout: 10
+
+      # === Тест 2: Animal ===
+      - name: Run Test — Task 2
+        id: test2
+        uses: classroom-resources/autograding-io-grader@v1
+        with:
+          executable: "python tests/test_task_02.py"
+          timeout: 10
+
+      # === Отчёт ===
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          TEST1_RESULTS: "${{ steps.test1.outputs.result }}"
+          TEST2_RESULTS: "${{ steps.test2.outputs.result }}"
+        with:
+          runners: test1,test2
